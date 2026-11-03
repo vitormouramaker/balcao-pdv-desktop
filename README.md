@@ -4,7 +4,7 @@ Aplicativo de **ponto de venda (PDV)** para balcão de padarias, cafés e pequen
 
 Uma API Node.js/Express pequena faz a ponte com o PostgreSQL (catálogo, estoque, vendas, movimentos de caixa) e com a API do Mercado Pago.
 
-> **Sobre esta versão:** versão anonimizada de um sistema que construí e que roda em produção para uma empresa; nomes, marca, domínios, conteúdo proprietário e dados foram substituídos por fictícios.
+> **Sobre esta versão:** versão anonimizada de um sistema real que desenvolvi para uma empresa; nomes, marca, domínios, conteúdo proprietário e dados foram substituídos por fictícios.
 
 **English summary:** Desktop point-of-sale app (Tauri 2 + React 18 + TypeScript + Vite) built for keyboard and barcode-scanner operation, with a Node.js/Express + PostgreSQL API. Features barcode lookup with quantity multiplier (`15*`), weighed products, split payments (cash with change, PIX, debit, credit installments) sent serially to a Mercado Pago Point card terminal with status polling, cash-drawer open/bleed/close with end-of-day totals, daily promotions with live countdown, and receipt printing on the terminal. JWT sessions with tenant scoping, bcrypt with transparent migration of legacy MD5 hashes. Without a Mercado Pago token, a built-in terminal simulator approves charges so the whole flow runs locally.
 
