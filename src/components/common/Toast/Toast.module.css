@@ -1,0 +1,148 @@
+/* Toast.module.css */
+
+.toastContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+    pointer-events: none;
+    /* Allows clicking through empty space */
+}
+
+.toast {
+    pointer-events: auto;
+    min-width: 300px;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 4px;
+    /* Slightly rounded */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+    border-left-width: 6px;
+    border-left-style: solid;
+    animation: slideIn 0.3s ease-out forwards;
+    position: relative;
+    overflow: hidden;
+}
+
+.toast.exiting {
+    animation: slideOut 0.3s ease-in forwards;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(120%);
+        opacity: 0;
+    }
+}
+
+/* Variants */
+.success {
+    background-color: #ecfdf5;
+    /* green-50 */
+    border-left-color: #10b981;
+    /* green-500 */
+}
+
+.error {
+    background-color: #fef2f2;
+    /* red-50 */
+    border-left-color: #ef4444;
+    /* red-500 */
+}
+
+.warning {
+    background-color: #fefce8;
+    /* yellow-50 */
+    border-left-color: #eab308;
+    /* yellow-500 */
+}
+
+.info {
+    background-color: #eff6ff;
+    /* blue-50 */
+    border-left-color: #3b82f6;
+    /* blue-500 */
+}
+
+.notification {
+    background-color: #faf5ff;
+    /* purple-50 */
+    border-left-color: #a855f7;
+    /* purple-500 */
+}
+
+/* Icon Colors */
+.success .icon {
+    color: #10b981;
+}
+
+.error .icon {
+    color: #ef4444;
+}
+
+.warning .icon {
+    color: #eab308;
+}
+
+.info .icon {
+    color: #3b82f6;
+}
+
+.notification .icon {
+    color: #a855f7;
+}
+
+.content {
+    flex: 1;
+    font-size: 0.95rem;
+    color: #374151;
+    /* gray-700 */
+    font-weight: 500;
+}
+
+/* Optional Progress Bar similar to image underline? Image shows underline. */
+.progressBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: currentColor;
+    opacity: 0.3;
+    width: 100%;
+    transform-origin: left;
+    animation: progress linear forwards;
+}
+
+@keyframes progress {
+    from {
+        transform: scaleX(1);
+    }
+
+    to {
+        transform: scaleX(0);
+    }
+}

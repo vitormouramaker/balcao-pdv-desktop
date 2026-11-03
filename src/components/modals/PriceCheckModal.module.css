@@ -1,0 +1,155 @@
+.modalContent {
+    padding: 16px 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.inputContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.inputLabel {
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.inputWrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.barcodeInput {
+    flex: 1;
+    padding: 12px;
+    font-size: 18px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.barcodeInput:focus {
+    border-color: #4f46e5;
+}
+
+.searchButton {
+    padding: 0 20px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchButton:hover {
+    background-color: #4338ca;
+}
+
+.resultContainer {
+    width: 100%;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.productName {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.3;
+}
+
+.productPrice {
+    font-size: 48px;
+    font-weight: 800;
+    color: #16a34a;
+    /* Green */
+    margin: 8px 0;
+}
+
+.productDetail {
+    font-size: 16px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.notFoundContainer {
+    padding: 20px;
+    background-color: #fef2f2;
+    border: 1px solid #fee2e2;
+    border-radius: 8px;
+    color: #ef4444;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+}
+
+.footer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+}
+
+.closeButton {
+    padding: 10px 20px;
+    background-color: #e5e7eb;
+    color: #374151;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+    background-color: #d1d5db;
+}
+
+.clearButton {
+    padding: 10px 20px;
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+    color: #374151;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.clearButton:hover {
+    background-color: #f3f4f6;
+}

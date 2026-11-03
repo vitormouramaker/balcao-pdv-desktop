@@ -1,0 +1,62 @@
+# Sobe o PDV localmente: PostgreSQL + API + interface web.
+#
+#   docker compose up --build
+#
+# Interface: http://localhost:1420   API: http://localhost:4444/health
+# Contas de demonstração (criadas na subida): veja o README.
+# O app desktop (Tauri) roda fora do Docker, com `npm run tauri dev`.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: balcao_pdv
+      TZ: UTC
+    ports:
+      - "5434:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d balcao_pdv"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  backend:
+    build: ./backend
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # development: o seed de demonstração se recusa a rodar em production.
+      NODE_ENV: development
+      PORT: 4444
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: balcao_pdv
+      JWT_SECRET: segredo-local-somente-para-demonstracao-0001
+      CORS_ORIGINS: http://localhost:1420,tauri://localhost,http://tauri.localhost
+      MERCADO_PAGO_MODE: mock
+    # Cria as tabelas e os dados de demonstração e sobe a API.
+    command: >
+      sh -c "node scripts/init-db.js &&
+             node scripts/seed-demo.js &&
+             node src/app.js"
+    ports:
+      - "4444:4444"
+
+  frontend:
+    build:
+      context: .
+      args:
+        VITE_API_BASE_URL: http://localhost:4444
+    depends_on:
+      - backend
+    ports:
+      - "1420:80"
+
+volumes:
+  db-data:
